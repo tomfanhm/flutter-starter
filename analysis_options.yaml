@@ -1,0 +1,27 @@
+include: package:flutter_lints/flutter.yaml
+
+analyzer:
+  errors:
+    unawaited_futures: error
+  exclude:
+    - '**/*.g.dart'
+    - '**/*.freezed.dart'
+
+linter:
+  rules:
+    # Style
+    prefer_single_quotes: true
+    sort_constructors_first: true
+    always_declare_return_types: true
+    prefer_const_constructors: true
+    prefer_const_declarations: true
+    # Safety
+    unawaited_futures: true
+    cancel_subscriptions: true
+    close_sinks: true
+    # Readability
+    prefer_final_locals: true
+    prefer_final_in_for_each: true
+    avoid_redundant_argument_values: true
+    directives_ordering: true
+    prefer_relative_imports: true

@@ -1,0 +1,7 @@
+pre-commit:
+  parallel: true
+  commands:
+    analyze:
+      run: dart analyze
+    format:
+      run: dart format --set-exit-if-changed .

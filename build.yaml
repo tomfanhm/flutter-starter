@@ -1,0 +1,21 @@
+targets:
+  $default:
+    builders:
+      freezed:
+        generate_for:
+          include:
+            - lib/**/*.dart
+          exclude:
+            - test/**
+      json_serializable:
+        generate_for:
+          include:
+            - lib/**/*.dart
+          exclude:
+            - test/**
+      riverpod_generator:
+        generate_for:
+          include:
+            - lib/**/*.dart
+          exclude:
+            - test/**
