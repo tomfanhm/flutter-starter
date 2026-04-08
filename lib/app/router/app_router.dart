@@ -10,13 +10,11 @@ final appRouter = GoRouter(
   routes: [
     GoRoute(
       path: AppRoutes.login,
-      builder: (BuildContext context, GoRouterState state) =>
-          const LoginPage(),
+      builder: (BuildContext context, GoRouterState state) => const LoginPage(),
     ),
     GoRoute(
       path: AppRoutes.home,
-      builder: (BuildContext context, GoRouterState state) =>
-          const HomePage(),
+      builder: (BuildContext context, GoRouterState state) => const HomePage(),
     ),
   ],
 );

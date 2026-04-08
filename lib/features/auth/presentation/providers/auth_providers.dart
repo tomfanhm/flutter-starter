@@ -54,7 +54,8 @@ class AuthNotifier extends _$AuthNotifier {
     if (!state.hasError) return null;
     final error = state.error;
     return switch (error) {
-      NetworkException() => 'No internet connection. Please check your network.',
+      NetworkException() =>
+        'No internet connection. Please check your network.',
       TimeoutException() => 'Request timed out. Please try again.',
       UnauthorizedException() => 'Invalid email or password.',
       ServerException() => 'Something went wrong. Please try again later.',
