@@ -40,10 +40,21 @@ class EnvConfig {
     };
   }
 
-  static late final EnvConfig instance;
+  static EnvConfig? _instance;
+
+  static EnvConfig get instance {
+    final i = _instance;
+    if (i == null) {
+      throw StateError(
+        'EnvConfig.initialize() must be called before accessing instance. '
+        'Ensure it is called in main() before runApp().',
+      );
+    }
+    return i;
+  }
 
   static void initialize(Environment env) {
-    instance = EnvConfig.fromEnvironment(env);
+    _instance = EnvConfig.fromEnvironment(env);
   }
 
   final Environment environment;

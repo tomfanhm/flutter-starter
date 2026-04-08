@@ -21,7 +21,6 @@ void main() {
 
   group('LoginUseCase', () {
     test('should return User when login succeeds', () async {
-      // Arrange
       when(
         () => mockRepository.login(
           email: testEmail,
@@ -29,13 +28,11 @@ void main() {
         ),
       ).thenAnswer((_) async => testUser);
 
-      // Act
       final result = await loginUseCase(
         email: testEmail,
         password: testPassword,
       );
 
-      // Assert
       expect(result, equals(testUser));
       verify(
         () => mockRepository.login(
@@ -46,7 +43,6 @@ void main() {
     });
 
     test('should propagate exception when login fails', () async {
-      // Arrange
       when(
         () => mockRepository.login(
           email: any(named: 'email'),
@@ -54,7 +50,6 @@ void main() {
         ),
       ).thenThrow(Exception('Invalid credentials'));
 
-      // Act & Assert
       expect(
         () => loginUseCase(email: testEmail, password: testPassword),
         throwsA(isA<Exception>()),

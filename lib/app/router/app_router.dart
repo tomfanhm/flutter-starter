@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../features/auth/presentation/pages/login_page.dart';
+import '../../features/home/presentation/pages/home_page.dart';
 import 'routes.dart';
 
 final appRouter = GoRouter(
@@ -9,7 +10,13 @@ final appRouter = GoRouter(
   routes: [
     GoRoute(
       path: AppRoutes.login,
-      builder: (BuildContext context, GoRouterState state) => const LoginPage(),
+      builder: (BuildContext context, GoRouterState state) =>
+          const LoginPage(),
+    ),
+    GoRoute(
+      path: AppRoutes.home,
+      builder: (BuildContext context, GoRouterState state) =>
+          const HomePage(),
     ),
   ],
 );

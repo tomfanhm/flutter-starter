@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
+import '../../../../app/router/routes.dart';
+import '../../../../shared/widgets/app_button.dart';
 import '../providers/auth_providers.dart';
 
 class LoginForm extends ConsumerStatefulWidget {
@@ -34,6 +37,14 @@ class _LoginFormState extends ConsumerState<LoginForm> {
   @override
   Widget build(BuildContext context) {
     final authState = ref.watch(authNotifierProvider);
+
+    ref.listen(authNotifierProvider, (previous, next) {
+      if (next.hasValue && next.value != null) {
+        context.go(AppRoutes.home);
+      }
+    });
+
+    final errorMessage = ref.read(authNotifierProvider.notifier).errorMessage;
 
     return Form(
       key: _formKey,
@@ -72,21 +83,16 @@ class _LoginFormState extends ConsumerState<LoginForm> {
             },
           ),
           const SizedBox(height: 24),
-          ElevatedButton(
-            onPressed: authState.isLoading ? null : _onSubmit,
-            child: authState.isLoading
-                ? const SizedBox(
-                    height: 20,
-                    width: 20,
-                    child: CircularProgressIndicator(strokeWidth: 2),
-                  )
-                : const Text('Sign In'),
+          AppButton(
+            label: 'Sign In',
+            onPressed: _onSubmit,
+            isLoading: authState.isLoading,
           ),
-          if (authState.hasError)
+          if (errorMessage != null)
             Padding(
               padding: const EdgeInsets.only(top: 16),
               child: Text(
-                authState.error.toString(),
+                errorMessage,
                 style: TextStyle(color: Theme.of(context).colorScheme.error),
               ),
             ),

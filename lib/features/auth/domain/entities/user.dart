@@ -1,15 +1,23 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+class User {
+  const User({
+    required this.id,
+    required this.email,
+    required this.name,
+  });
 
-part 'user.freezed.dart';
-part 'user.g.dart';
+  final String id;
+  final String email;
+  final String name;
 
-@freezed
-abstract class User with _$User {
-  const factory User({
-    required String id,
-    required String email,
-    required String name,
-  }) = _User;
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is User &&
+          runtimeType == other.runtimeType &&
+          id == other.id &&
+          email == other.email &&
+          name == other.name;
 
-  factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
+  @override
+  int get hashCode => Object.hash(id, email, name);
 }
